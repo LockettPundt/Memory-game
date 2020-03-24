@@ -13,9 +13,13 @@
   }
 }
 
+.subtitle {
+  color: #666666;
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
