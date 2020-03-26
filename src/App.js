@@ -6,7 +6,7 @@ const generateDeck = () => {
     const symbols = [`∆`,` ß`, `£`, `§`,`•`, `$`, `+`, `ø`];
     let i = 0;
     let deck = [];
-    while (i <= 16) {
+    while (i < 16) {
       deck.push({isFlipped: false, symbol: symbols[i % 8]});
       i++;
     }
@@ -49,14 +49,18 @@ class App extends Component {
       }
       return card;
     });
+    console.log(newPickedCards.length)
     if (newPickedCards.length === 2) {
       const cardIndex1 = newPickedCards[0];
       const cardIndex2 = newPickedCards[1];
+      console.log("this is index 0:", cardIndex1)
+      console.log("this is index 1:", cardIndex2)
+      console.log("This is new picked cards: ", [...newPickedCards])
       if (newDeck[cardIndex1].symbol !== newDeck[cardIndex2].symbol) {
-        console.log("hi");
-        setTimeout(this.unFlipCards(cardIndex1, cardIndex2), 1000);
+        console.log("This is new picked cards: ", [...newPickedCards])
+        setTimeout(this.unFlipCards.bind(this, cardIndex1, cardIndex2), 1000);
       }
-      newPickedCards = [];
+    newPickedCards = [];
       
     }
     console.log("this is the new DEck", newDeck)
@@ -66,18 +70,18 @@ class App extends Component {
     })
   }
   
-  unFlipCards = (cardIndex1, cardIndex2) => {
+  unFlipCards = (index1, index2) => {
+    console.log(index2);
+    
     console.log("hi, this is the unflipping of cards.")
-    const card1 = {...this.state.deck[cardIndex1]};
-    const card2 = {...this.state.deck[cardIndex2]};
+    const card1 = {...this.state.deck[index1]};
+    const card2 = {...this.state.deck[index2]};
+    console.log("card 1:", card1);
+    console.log("card 2:", card2);
     let newDeck = this.state.deck.map((card, index) => {
-      if (cardIndex1 === index) {
-        card1.isFlipped = false;
-        return card1;
-      }
-      if (cardIndex2 === index) {
-        card2.isFlipped = false;
-        return card2;
+      if (index1 === index || index2 === index) {
+        card.isFlipped = false;
+        return card;
       }
       return card;
     });
