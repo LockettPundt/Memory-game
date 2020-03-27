@@ -71,13 +71,7 @@ class App extends Component {
   }
   
   unFlipCards = (index1, index2) => {
-    console.log(index2);
-    
-    console.log("hi, this is the unflipping of cards.")
-    const card1 = {...this.state.deck[index1]};
-    const card2 = {...this.state.deck[index2]};
-    console.log("card 1:", card1);
-    console.log("card 2:", card2);
+
     let newDeck = this.state.deck.map((card, index) => {
       if (index1 === index || index2 === index) {
         card.isFlipped = false;
